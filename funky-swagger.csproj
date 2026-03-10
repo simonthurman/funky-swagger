@@ -20,5 +20,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
     </None>
+    <EmbeddedResource Include="openapi.json" />
   </ItemGroup>
 </Project>

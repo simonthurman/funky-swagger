@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "myfunky", "myfunky.csproj", "{0F6A6368-B003-DB95-92D9-18D422234C8B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "funky-swagger", "funky-swagger.csproj", "{0F6A6368-B003-DB95-92D9-18D422234C8B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,5 +1,5 @@
 using System.IO;
-using System.Net;
+using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -9,39 +9,40 @@ using Microsoft.Extensions.Logging;
 
 namespace FunkySwagger
 {
-    public class sayHello
+    public class getReverse
     {
-        private readonly ILogger<sayHello> _logger;
+        private readonly ILogger<getReverse> _logger;
 
-        public sayHello(ILogger<sayHello> log)
+        public getReverse(ILogger<getReverse> log)
         {
             _logger = log;
         }
 
-        [Function("sayHello")]
+        [Function("getReverse")]
         public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req)
         {
             _logger.LogInformation("C# HTTP trigger function processed a request.");
 
-            string? name = req.Query["name"];
+            string? input = req.Query["input"];
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             if (!string.IsNullOrEmpty(requestBody))
             {
                 var data = JsonDocument.Parse(requestBody);
-                if (data.RootElement.TryGetProperty("name", out var nameProp))
+                if (data.RootElement.TryGetProperty("input", out var inputProp))
                 {
-                    name ??= nameProp.GetString();
+                    input ??= inputProp.GetString();
                 }
             }
 
-            string responseMessage = string.IsNullOrEmpty(name)
-                ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
-                : $"Hello, {name}. This HTTP triggered function executed successfully.";
+            if (string.IsNullOrEmpty(input))
+            {
+                return new BadRequestObjectResult("Please pass an input string on the query string or in the request body.");
+            }
 
-            return new OkObjectResult(responseMessage);
+            var reversed = new string(input.Reverse().ToArray());
+            return new OkObjectResult(reversed);
         }
     }
 }
-
