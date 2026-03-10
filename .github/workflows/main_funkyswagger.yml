@@ -52,8 +52,7 @@ jobs:
       - name: 'Deploy to Azure Functions'
         shell: bash
         run: |
-          az functionapp deploy \
+          az functionapp deployment source config-zip \
             --name funkyswagger \
             --resource-group funkyswagger \
-            --type zip \
-            --src-path ./${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/deploy.zip
+            --src ./${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/deploy.zip
