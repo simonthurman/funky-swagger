@@ -1,0 +1,132 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "funky-swagger",
+    "description": "Azure Functions HTTP trigger API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/sayHello": {
+      "get": {
+        "operationId": "sayHello_GET",
+        "tags": ["name"],
+        "summary": "Returns a personalized greeting",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "The name to greet"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The OK response",
+            "content": {
+              "text/plain": {
+                "schema": { "type": "string" }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "sayHello_POST",
+        "tags": ["name"],
+        "summary": "Returns a personalized greeting",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name to greet"
+                  }
+                },
+                "required": ["name"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The OK response",
+            "content": {
+              "text/plain": {
+                "schema": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/getReverse": {
+      "get": {
+        "operationId": "getReverse_GET",
+        "tags": ["reverse"],
+        "summary": "Reverses the input string",
+        "parameters": [
+          {
+            "name": "input",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "The string to reverse"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The reversed string",
+            "content": {
+              "text/plain": {
+                "schema": { "type": "string" }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing input parameter"
+          }
+        }
+      },
+      "post": {
+        "operationId": "getReverse_POST",
+        "tags": ["reverse"],
+        "summary": "Reverses the input string",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "input": {
+                    "type": "string",
+                    "description": "The string to reverse"
+                  }
+                },
+                "required": ["input"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The reversed string",
+            "content": {
+              "text/plain": {
+                "schema": { "type": "string" }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing input parameter"
+          }
+        }
+      }
+    }
+  }
+}
